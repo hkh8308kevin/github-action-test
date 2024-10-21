@@ -1,0 +1,15 @@
+name: Verify file
+
+on:
+  push:
+  pull_request:
+
+jobs:
+  verify:
+    name: ${{ vars.JOB_NAME}}
+    if: ${{ vars.EXEC_WF == 'trye' }}
+    run-on: ubuntu-latest
+steps:
+  - uses: action/checkout@v3
+  - run: |
+      [[ -f ${{var.FILE_TO_CHECK}} ]] || ( echo "
